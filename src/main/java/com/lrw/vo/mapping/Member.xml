@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lrw.dao.IMemberDAO">
+<cache /> 
+    <!--进行用户的注册，只需要username和password  -->
+	<insert id="doCreateFirst" parameterType="com.lrw.vo.Member">
+	  INSERT INTO Member (username,password,birthday) values (#{username},#{password},#{birthday});
+	</insert>
+	<!-- 查询出所有的用户 -->
+	<select id="findAll" resultType="com.lrw.vo.Member">
+	   select * from member where status=0;
+	</select>
+	<!--根据编号查询出用户  -->
+	<select id="findById" parameterType="string" resultType="com.lrw.vo.Member">
+	   select * from member where mid=#{value};
+	</select>
+	<!-- 进行用户的登录检查操作 -->
+	<select id="login" parameterType="com.lrw.vo.Member" resultType="com.lrw.vo.Member">
+	   select * from member where username=#{username} And password=#{password} And status=0;
+	</select>
+	<!--进行用户名是否重复检查  -->
+	<select id="checkUsername" parameterType="string" resultType="com.lrw.vo.Member">
+	   select * from member where username={#value};
+	</select>
+	
+	<!--对用户信息进行完善  -->
+	<update id="doUpdateMember" parameterType="com.lrw.vo.Member">
+	   update Member set telphone=#{telphone},email=#{email} where mid=#{mid};
+	</update>
+	<!-- 对用户的会员等级进行升级 -->
+    <update id="doUpdateMemberLevel" parameterType="com.lrw.vo.Member">
+       update Member set level=#{level} where mid=#{mid};
+     </update>
+     <!--将用户变为不可登录状态 -->
+     <update id="upStatusToBan" parameterType="com.lrw.vo.Member">
+       update Member set status=1 where mid=#{mid};
+     </update>
+     <!--将用户变为可登录状态 -->
+      <update id="upStatusToAllow" parameterType="com.lrw.vo.Member">
+       update Member set status=0 where mid=#{mid};
+     </update>
+	
+</mapper>

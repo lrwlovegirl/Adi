@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+	    http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://mybatis.org/schema/mybatis-spring 
+		http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+   <!-- 读取jdbc.properties -->
+  <context:property-placeholder location="classpath:dataBase.properties"/>
+    <!--  创建DataSource -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${db.driverClassName}"></property>
+		<property name="jdbcUrl" value="${db.url}"></property>
+		<property name="user" value="${db.username}"></property>
+		<property name="password" value="${db.password}"></property>
+		<property name="maxPoolSize" value="${db.maxActive}"></property>
+		<property name="minPoolSize" value="${db.minIdle}"></property>
+		<property name="initialPoolSize" value="${db.initialSize}"></property>
+		<property name="maxIdleTime" value="${db.minEvictableIdleTimeMillis}"></property>
+	</bean>
+         <!-- 创建SQLSessionFactory对象 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+       <!--  关联连接池 -->
+        <property name="dataSource" ref="dataSource"></property>
+      
+       <!-- 加载sql映射文件 -->
+    <property name="mapperLocations" value="classpath:com/lrw/vo/mapping/*.xml"></property>
+    </bean>
+    
+      <!--Mapper接口的扫描  -->
+      <!-- 如果使用了Mapper接口包扫描，那么每个Mapper接口在Spring容器中的id名称为类名，首字母小写 -->
+      <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--配置Mapper接口所在包的路径  -->
+        <property name="basePackage" value="com.lrw.dao"></property>
+      </bean>
+    
+       <!--开启Spring的IOC注解扫描  -->
+       <context:component-scan base-package="com.lrw"/>
+     
+       <!--开启spring的事务管理  -->
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+          <property name="dataSource" ref="dataSource"></property>
+        </bean>
+        <!--开启spring的事务注解  -->
+       <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+  
+    
+</beans>

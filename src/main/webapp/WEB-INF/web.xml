@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<web-app version="3.0" 
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance 
+ http://www.springmodules.org/schema/cache/springmodules-cache.xsd 
+ http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+               http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_1559786780159">
+
+  <display-name>ADiProject</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <jsp-config>
+    <taglib>
+      <taglib-uri>http://www.mldn.cn/c</taglib-uri>
+      <taglib-location>/WEB-INF/c.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+   	
+  <!--启动springmvc  -->
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <!--参数：读取spring-mvc.xml  -->
+     <init-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring-mvc.xml</param-value>
+     </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>springmvc</servlet-name>
+   <url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+ 
+ 
+  
+  
+</web-app>
