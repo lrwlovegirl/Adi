@@ -62,7 +62,11 @@ public interface IMemberDAO {
    * @return
    */
   public boolean upStatusToAllow(Member vo);
-  
+  /**
+   * 检查用户名是否可用
+   * @param username 用户注册时输入的用户名
+   * @return
+   */
   public boolean checkUsername(String username);
   
   

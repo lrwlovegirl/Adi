@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lrw.dao.IItemoneDAO">
+<cache /> 
+    <!--进行一级菜单的增加  -->
+	<insert id="doCreateItemone" parameterType="com.lrw.vo.Itemone">
+	  Insert into itemone (title) values (#{value});
+	</insert>
+	<!--进行一级菜单的删除  -->
+	<delete id="doRemoveItemone" parameterType="int">
+	  deleter from itemone where ioid=#{value};
+	</delete>
+	<!--进行一级菜单的更新  -->
+	<update id="updateItemone" parameterType="com.lrw.vo.Itemone">
+	   update itemone set title=#{title} where ioid=#{ioid};
+	</update>
+	<!--查询出所有的一级菜单-->
+	<select id="findAllItemone" resultType="com.lrw.vo.Itemone">
+	  select * from itemone;
+	</select>
+	<!--根据编号查询某个一级菜单  -->
+	<select id="findItemoneById" parameterType="int">
+	    select * from itemone where ioid=#{value};
+	</select>
+	
+</mapper>
