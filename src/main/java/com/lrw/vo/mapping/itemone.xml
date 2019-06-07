@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  select * from itemone;
 	</select>
 	<!--根据编号查询某个一级菜单  -->
-	<select id="findItemoneById" parameterType="int">
+	<select id="findItemoneById" parameterType="int" resultType="com.lrw.vo.Itemone">
 	    select * from itemone where ioid=#{value};
 	</select>
 	

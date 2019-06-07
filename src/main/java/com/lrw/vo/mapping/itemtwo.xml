@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lrw.dao.IItemtwoDAO">
+<cache /> 
+    <!--进行二级菜单的增加  -->
+	<insert id="doCreateItemtwo" parameterType="com.lrw.vo.Itemtwo">
+	  Insert into itemtwo (ioid,title) values (#{ioid},#{title});
+	</insert>
+	<!--进行二级菜单的删除  -->
+	<delete id="doRemoveItemtwo" parameterType="int">
+	  deleter from itemtwo where itid=#{value};
+	</delete>
+	<!--进行二级菜单的更新  -->
+	<update id="updateItemtwo" parameterType="com.lrw.vo.Itemtwo">
+	   update itemtwo set ioid=#{ioid},title=#{title} where itid=#{itid};
+	</update>
+	<!--查询出所有的二级菜单-->
+	<select id="findAllItemtwo" resultType="com.lrw.vo.Itemtwo">
+	  select * from itemtwo;
+	</select>
+	<!--根据编号查询某个二级菜单  -->
+	<select id="findItemtwoByItid" parameterType="int" resultType="com.lrw.vo.Itemtwo">
+	    select * from itemone where itid=#{value};
+	</select>
+	
+	<!--根据一级菜单查询出所有的对应的二级菜单  -->
+     <select id="findAllItemtwoByIoid" parameterType="int" resultType="com.lrw.vo.Itemtwo">
+       select * from itemtwo where ioid=#{value}; 
+     </select>
+</mapper>

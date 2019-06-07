@@ -12,7 +12,7 @@ import com.lrw.vo.Itemone;
 
 @Controller
 @RequestMapping("/Itemone")
-public class ItemController {
+public class ItemoneController {
    @Resource
    private ItemoneService itemoneservice;
    /**
@@ -21,7 +21,7 @@ public class ItemController {
     * @return
     * @throws Exception
     */
-    @RequestMapping("additem")
+    @RequestMapping("additemone")
    public String addItemone(Itemone vo) throws Exception{
 	   if( this.itemoneservice.addItemone(vo)){
 		   return "index";
