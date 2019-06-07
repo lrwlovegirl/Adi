@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lrw.dao.IGoodsDAO">
+<cache /> 
+    <!-- 进行商品的增加操作 -->
+    <insert id="doCreateGood" parameterType="com.lrw.vo.Goods">
+       insert into goods (ioid,itid,irid,title,note,regdate,price,count,photo) values(
+         #{ioid},#{itid},#{irid},#{title},#{note},#{regdate},#{price},#{count},#{photo}
+       );
+    </insert>
+    <!--进行商品的更新操作  -->
+    <update id="updateGoods" parameterType="com.lrw.vo.Goods">
+      update Goods set ioid=#{ioid},itid=#{itid},irid=#{irid},title=#{title},price=#{price},count=#{count},
+      photo=#{photo} where gid=#{gid};
+    </update>
+    <!-- 查询出全部商品 -->
+    <select id="findAllGoods" resultType="com.lrw.vo.Goods">
+      select * from goods;
+    </select>
+    <!-- 查询出所有的上架商品 -->
+    <select id="findAllAllowGoods" parameterType="com.lrw.vo.Goods">
+       select * from goods where status=0;
+    </select>
+    
+     <!-- 查询出所有的下架商品 -->
+    <select id="findAllAllowGoods" parameterType="com.lrw.vo.Goods">
+       select * from goods where status=1;
+    </select>
+    <!-- 根据编号查询出某件商品的信息 -->
+    <select id="findById" parameterType="int">
+      select * from goods where gid=#{value};
+    </select>
+    <!-- 根据编号将某件下架商品更改为上架 -->
+    <update id="changeStatusToAllow" parameterType="int">
+       update goods set status=0 where gid=#{value};
+    </update>
+    
+     <!-- 根据编号将某件上架商品更改为下架 -->
+    <update id="changeStatusToAllow" parameterType="int">
+       update goods set status=1 where gid=#{value};
+    </update>
+    <!--更新某件商品信息的库存  -->
+    <update id="changeCount">
+      update goods set count=#{1} where gid=#{0};
+    </update>
+</mapper>
