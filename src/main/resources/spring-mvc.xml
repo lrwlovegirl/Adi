@@ -33,5 +33,10 @@
         <!--后缀  -->
        <property name="suffix" value=".jsp"/>
     </bean>
-   
+   <mvc:interceptors>
+      <mvc:interceptor>
+         <mvc:mapping path="/goods/*.action"/>
+         <bean class="com.lrw.interceptor.UploadInterceptor"></bean>
+      </mvc:interceptor>
+   </mvc:interceptors>
  </beans>

@@ -45,12 +45,13 @@
     <artifactId>spring-beans</artifactId>
     <version>5.1.5.RELEASE</version>
 </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-web</artifactId>
-    <version>5.1.4.RELEASE</version>
+    <version>5.1.5.RELEASE</version>
 </dependency>
+
  <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 <dependency>
     <groupId>org.mybatis</groupId>
@@ -74,8 +75,9 @@
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-aop</artifactId>
-    <version>5.1.1.RELEASE</version>
+    <version>5.1.5.RELEASE</version>
 </dependency>
+
 <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
 <dependency>
     <groupId>org.springframework</groupId>
@@ -131,6 +133,13 @@
     <scope>test</scope>
    
 </dependency>
+<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+<dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    <version>1.3.1</version>
+</dependency>
+
   </dependencies>
   <build>
     <finalName>XIIX</finalName>

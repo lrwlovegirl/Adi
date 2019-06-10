@@ -47,6 +47,16 @@
         <!--配置Mapper接口所在包的路径  -->
         <property name="basePackage" value="com.lrw.dao"></property>
       </bean>
+      
+      <!-- 上传文件配置 -->
+      <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+       <property name="maxUploadSize" value="52428800"/><!-- 上传照片大小最大为50兆 -->
+       <property name="maxInMemorySize" value="5242880"/>
+     </bean>
+    
+    
+     
+    
     
        <!--开启Spring的IOC注解扫描  -->
        <context:component-scan base-package="com.lrw"/>

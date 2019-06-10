@@ -51,7 +51,7 @@ public class OrdersController {
     	  }
     	  
      }
-     @RequestMapping("updateOrders")
+     @RequestMapping("findOrders")
      @ResponseBody
      public List<Orders> findAllById(int mid) throws Exception{
     	 return this.orderservice.listByMid(mid);
