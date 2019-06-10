@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
      <!-- 查询出所有的下架商品 -->
-    <select id="findAllAllowGoods" parameterType="com.lrw.vo.Goods">
+    <select id="findAllBanGoods" parameterType="com.lrw.vo.Goods">
        select * from goods where status=1;
     </select>
     <!-- 根据编号查询出某件商品的信息 -->
@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
     
      <!-- 根据编号将某件上架商品更改为下架 -->
-    <update id="changeStatusToAllow" parameterType="int">
+    <update id="changeStatusToBan" parameterType="int">
        update goods set status=1 where gid=#{value};
     </update>
     <!--更新某件商品信息的库存  -->

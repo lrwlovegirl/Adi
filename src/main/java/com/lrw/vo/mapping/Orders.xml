@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lrw.dao.IOrdersDAO">
+<cache />
+  <!--增加订单 --> 
+  <insert id="doCreateOrders" parameterType="com.lrw.vo.Orders">
+    insert into orders (mid,allpay,aid,username,address) values(#{mid},#{allpay},#{aid},#{username},#{address});
+  </insert>
+  <!-- 查询出某个用户的所有订单 -->
+  <select id="findAllByMid" parameterType="int" resultType="com.lrw.vo.Orders">
+     select * from Orders where mid=#{value};
+  </select>
+  
+  <!--更改某个订单的信息  ，这是管理员的操作-->
+   <update id="updateOrderByOid" parameterType="com.lrw.vo.Orders">
+     update Orders set allpay=#{allpay},address=#{address} where oid=#{oid};
+   </update>
+   
+   <!-- 查询出所有的订单信息-->
+   <select id="findAll"  resultType="com.lrw.vo.Orders">
+     select * from Orders ;
+  </select>
+  
+</mapper>

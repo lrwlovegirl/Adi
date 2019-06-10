@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lrw.service.MemberService;
 import com.lrw.util.MD5utils;
@@ -55,6 +56,7 @@ public class MemberController {
      * @throws Exception
      */
     @RequestMapping("list")
+    @ResponseBody
     public List<Member> list() throws Exception {
     	return this.memberservice.list();
     }

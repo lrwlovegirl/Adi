@@ -11,23 +11,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <title>阿迪达斯官方商城</title>
     <link href="css/login.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/JQuery-3.4.js"></script>
+    <script type="text/javascript">
+   $(function(){
+	$("#btn").click(function(){
+	
+	$.ajax({
+			url:"/XIIX/Itemone/listItemone.action",
+		    type:"post",
+		    dataType:"josn",
+		    success:function(data){
+		    	console.log(data);
+		    	alert(data);
+		    }
+		
+			
+		})
+	})
+		
+	});
+    </script>
   </head>
   <body>
-     <div id="header">
-        <ul id="header-ul">
-          <li><a href="#">登录</a></li>  
-          <li><a href="#">订单追踪</a></li>  
-          <li><a href="#">帮助中心 ？</a></li>   
-          <li><a href="#">在线客服</a></li>   
-        </ul>
-    </div>
-    <div>
-      <form action="/XIIX/member/addMember.action" method="post">
+ 
+      
         username: <input type="text" name="username" id="username"/><br>
         password: <input type="text" name="password" id="password"/><br>
-        <input type="submit" value="提交">
+        <input type="button" value="提交" id="btn">
         
-      </form>
+      
     </div>
   </body>
 </html>

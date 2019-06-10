@@ -6,6 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
 
 import com.lrw.service.ItemoneService;
 import com.lrw.vo.Itemone;
@@ -63,15 +66,20 @@ public class ItemoneController {
      * @throws Exception
      */
     @RequestMapping("listItemone")
+    @ResponseBody
     public List<Itemone> list() throws Exception{
+    	System.out.println("laile");   	
     	return this.itemoneservice.list();
     }
+  
     /**
      * 根据编号查询出某个一级标题
      * @param ioid
      * @return
      * @throws Exception
      */
+    @RequestMapping("findItemone")
+    @ResponseBody
     public Itemone findItemoneById(int ioid) throws Exception{
     	return this.itemoneservice.findById(ioid);
     }

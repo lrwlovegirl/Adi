@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lrw.service.GoodsService;
 import com.lrw.vo.Goods;
@@ -49,6 +50,7 @@ public class GoodsController {
       * @throws Exception
       */
      @RequestMapping("listAll")
+     @ResponseBody
      public List<Goods> listAll() throws Exception{
     	 return this.goodservice.list();
      }
@@ -58,6 +60,7 @@ public class GoodsController {
       * @throws Exception
       */
      @RequestMapping("listAllAllowGoods")
+     @ResponseBody
      public List<Goods> listAllAllowGoods() throws Exception{
     	 return this.goodservice.listAllAllowGoods();
      }
@@ -67,6 +70,7 @@ public class GoodsController {
       * @throws Exception
       */
      @RequestMapping("listAllBanGoods")
+     @ResponseBody
      public List<Goods> listAllBanGoods() throws Exception{
     	 return this.goodservice.listAllBanGoods();
      }
@@ -106,51 +110,11 @@ public class GoodsController {
       * @return
       * @throws Exception
       */
+     @RequestMapping("updateCount")
      public boolean updateCount(int gid,int count) throws Exception{
     	 int nowcount=this.goodservice.findById(gid).getCount()-count;
     	 return this.goodservice.changeGoosCount(gid, nowcount);
      }
      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+         
 }

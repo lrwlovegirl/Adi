@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lrw.service.ItemtreService;
 import com.lrw.vo.Itemtre;
@@ -65,6 +66,7 @@ public class ItemtreController {
       * @throws Exception
       */
      @RequestMapping("listItemtre")
+     @ResponseBody
      public List<Itemtre> list() throws Exception{
      	return this.itemtreservice.list();
      }
@@ -75,6 +77,7 @@ public class ItemtreController {
       * @throws Exception
       */
      @RequestMapping("findByIrid")
+     @ResponseBody
      public Itemtre findItemoneByIrid(int irid) throws Exception{
      	return this.itemtreservice.findByIrid(irid);
      }
@@ -85,6 +88,7 @@ public class ItemtreController {
       * @throws Exception
       */
      @RequestMapping("findByIoid")
+     @ResponseBody
      public List<Itemtre> findItemtreByItid(int itid) throws Exception{
    	  return this.itemtreservice.listByItid(itid);
      }

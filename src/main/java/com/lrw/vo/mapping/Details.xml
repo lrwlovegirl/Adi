@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lrw.dao.IDetailsDAO">
+<cache />
+  <insert id="doCreateDetaisl" parameterType="com.lrw.vo.Details">
+    insert into Detaisl (oid,gid,title,price,count) values (#{oid},#{gid},#{title},#{price},#{count});
+  </insert>
+  
+  <select id="findByOdid" parameterType="int" resultType="com.lrw.vo.Details">
+     select * from detaisl where odid=#{value};
+  </select>
+</mapper>

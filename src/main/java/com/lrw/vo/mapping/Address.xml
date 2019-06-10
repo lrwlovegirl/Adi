@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lrw.dao.IAddressDAO">
+<cache /> 
+   <!-- 进行地址的增加 -->
+  <insert id="doCreateAddress" parameterType="com.lrw.vo.Address">
+     insert into Address (mid,address) values (#{mid},#{address});
+  </insert>
+   <!-- 进行地址的删除 -->
+  <delete id="doRemoveAddress" parameterType="int">
+     delete from address where aid =#{value};
+  </delete>
+  <!-- 进行地址的更改 -->
+  <update id="updateAddress" parameterType="com.lrw.vo.Address">
+     update Address set address=#{address} where aid=#{aid};
+  </update>
+   <!--根据用户编号查询出用户的所有收货地址  -->
+  <select id="findAll" parameterType="int" resultType="com.lrw.vo.Address">
+    select * from Address where mid=#{value};
+  </select>
+  <!-- 根据编号查询出某个地址 -->
+  <select id="findByAid" parameterType="int" resultType="com.lrw.vo.Address">
+     select * from Address where aid=#{value};
+  </select>
+</mapper>
