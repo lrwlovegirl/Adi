@@ -6,7 +6,7 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 @SuppressWarnings("serial")
-public class Goods implements Serializable {
+public class GoodsPlus implements Serializable {
 	private Integer gid;//商品编号
 	private String ioid;//所属一级菜单
 	private String itid;//所属二级菜单

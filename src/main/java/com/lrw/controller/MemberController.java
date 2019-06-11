@@ -4,9 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lrw.service.MemberService;
@@ -103,11 +105,25 @@ public class MemberController {
      * @throws Exception
      */
     @RequestMapping("login")
-    public boolean memberLogin(Member vo) throws Exception{
-    	if(this.memberservice.login(vo)!=null){
-    		return true;
+    public String memberLogin(Member vo,HttpServletRequest request,@RequestParam(name="randcode")String randcode) throws Exception{
+    	System.out.println(request.getSession().getAttribute("randomCode"));
+    	if(request.getSession().getAttribute("randomCode").equals(randcode)){//首先验证 验证码，如果验证码不对，剩下的也别做了
+    		String password = vo.getPassword();
+        	String passwordPlus = MD5utils.encryptPassword(password, vo.getUsername());
+        	vo.setPassword(passwordPlus);
+    		if(this.memberservice.login(vo)!=null){
+    			request.setAttribute("msg", "登录成功，欢迎您的登录");
+          		request.setAttribute("url", "/index.jsp");
+        		return "forward";
+    	  }else{
+    		request.setAttribute("msg", "用户名或密码错误");
+      		request.setAttribute("url", "/login.jsp");
+    		return "forward";
+    	 }
     	}else{
-    		return false;
+    		request.setAttribute("msg", "验证码错误，请检查验证码");
+    		request.setAttribute("url", "/login.jsp");
+    		return "forward";
     	}
     }
     /**
@@ -116,6 +132,7 @@ public class MemberController {
      * @return
      * @throws Exception
      */
+    @RequestMapping("checkUsername")
     public boolean checkusername(String username) throws Exception{
     	if(this.memberservice.checkUsername(username)!=null){
     		return true;

@@ -19,14 +19,10 @@ $(function(){
 			url:"Itemone/listItemone.action",
 		    type:"post",
 		    data:{},
-		    dataType:"json",
+		    dataType:"text",
 		    success:function(data){
-		    	
 		    	alert(data)	;
-		    }/*,
-		    error:function(data){
-			   alert("1111");
-		   }*/
+		    }
 		
 			
 		})
