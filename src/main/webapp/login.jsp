@@ -68,6 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							验证码：<input type="text" name="randcode" maxlength="4" />
          					<img id="img" src="image.jsp" /><font color="red">${err_code}</font> 
 						</div>
+						<input type="checkbox" name="remember-me" value="true">记住我
 						<a href="#" id="forget">忘记密码？</a>
 						<input type="submit" value="登录">
 						<!-- <button>登&nbsp;&nbsp;&nbsp;录</button> -->

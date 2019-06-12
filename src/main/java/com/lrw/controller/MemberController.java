@@ -106,8 +106,7 @@ public class MemberController {
      */
     @RequestMapping("login")
     public String memberLogin(Member vo,HttpServletRequest request,@RequestParam(name="randcode")String randcode) throws Exception{
-    	System.out.println(request.getSession().getAttribute("randomCode"));
-    	if(request.getSession().getAttribute("randomCode").equals(randcode)){//首先验证 验证码，如果验证码不对，剩下的也别做了
+    	if(randcode!=null&&request.getSession().getAttribute("randomCode").equals(randcode)){//首先验证 验证码，如果验证码不对，剩下的也别做了
     		String password = vo.getPassword();
         	String passwordPlus = MD5utils.encryptPassword(password, vo.getUsername());
         	vo.setPassword(passwordPlus);
